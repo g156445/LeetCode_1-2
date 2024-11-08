@@ -89,5 +89,11 @@
                   print(sorted_numbers)
 
 
+技巧：   集合中，get(fault, 0)用法
+            比如： char_count.get(s[right], 0) + 1 中，.get() 是字典的一个方法，用于获取指定键的值。如果键不存在，可以返回一个默认值。
+                    其中： char_count.get(s[right], 0)：在字典 char_count 中查找键 s[right] 的值。
+                                1.如果 s[right] 存在于 char_count 中，返回对应的值（即该字符当前的出现次数）。
+                                2.如果 s[right] 不存在，返回默认值 0，表示该字符还没有在窗口中出现过。
+                          +1：在获取字符出现的次数后，加上 1，表示当前正在处理的字符要在窗口中多出现一次。
 
 '''
