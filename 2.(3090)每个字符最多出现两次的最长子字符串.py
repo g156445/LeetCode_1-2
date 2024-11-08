@@ -9,6 +9,7 @@ class Solution:
             char_count[s[right]] = char_count.get(s[right], 0) + 1
 
             # 如果有字符出现次数超过两次，移动左边界
+            # 如果"b"的出现次数为2，则满足条件，退出while 循环。
             while char_count[s[right]] > 2:
                 char_count[s[left]] -= 1
                 if char_count[s[left]] == 0:
