@@ -29,7 +29,6 @@ class Solution:
         return max_length
 
 
-# 测试
 solution = Solution()
 s = "abcd"
 t = "bcdf"
