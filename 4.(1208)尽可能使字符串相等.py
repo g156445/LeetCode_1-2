@@ -26,7 +26,7 @@ class Solution:
             # 更新最大长度为当前窗口的长度
             max_length = max(max_length, right - left + 1)
 
-        return max_length
+        return max_length, list_difference
 
 
 solution = Solution()
