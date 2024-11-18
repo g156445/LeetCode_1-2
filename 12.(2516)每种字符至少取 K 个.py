@@ -5,4 +5,4 @@
 
 
 class Solution:
-    def takeCharacters(self, s, k):
+    def takeCharacters(self, s, k) :
