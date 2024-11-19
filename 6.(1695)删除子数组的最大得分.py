@@ -16,4 +16,33 @@
 '''
 
 class Solution:
-    def maximumUniqueSubarray(self, nums) :
+    def maximumUniqueSubarray(self, nums):
+        # 滑动窗口起点
+        left = 0
+        # 用于记录窗口中的元素
+        seen = set()
+        # 当前窗口的总和
+        current_sum = 0
+        # 最大得分
+        max_sum = 0
+
+        for right in range(len(nums)):
+            # 如果当前元素已经在窗口中，调整窗口左边界直到移除重复的元素
+            while nums[right] in seen:
+                seen.remove(nums[left])  # 从集合中移除左边元素
+                current_sum -= nums[left]  # 更新当前窗口的和
+                left += 1  # 左边界右移
+
+            # 将当前元素加入窗口
+            seen.add(nums[right])
+            current_sum += nums[right]
+
+            # 更新最大得分
+            max_sum = max(max_sum, current_sum)
+
+        return max_sum
+
+# 测试代码
+solution = Solution()
+print(solution.maximumUniqueSubarray([5, 2, 1, 2, 5, 2, 1, 2, 5]))  # 输出 8
+print(solution.maximumUniqueSubarray([4, 2, 4, 5, 6]))  # 输出 17
