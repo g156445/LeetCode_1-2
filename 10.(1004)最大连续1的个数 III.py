@@ -16,4 +16,32 @@
 
 
 class Solution:
-    def longestOnes(self, nums, k) :
+    def longestOnes(self, nums, k):
+        store_k = []  # 记录窗口内 0 的位置
+        left = 0      # 窗口的左边界
+        max_length = 0
+
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                store_k.append(right)  # 记录当前 0 的位置
+
+            # 如果翻转的 0 超过了 k 个，调整左边界
+            if len(store_k) > k:
+                # 窗口左边界移动到 store_k 中最早的 0 的右侧
+                left = store_k.pop(0) + 1
+
+            # 更新最大长度
+            max_length = max(max_length, right - left + 1)
+
+        return max_length
+
+# 测试
+solution = Solution()
+print(solution.longestOnes([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], 2))  # 输出：6
+print(solution.longestOnes([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3))  # 输出：10
+
+
+
+
+
+
