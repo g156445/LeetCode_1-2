@@ -25,6 +25,46 @@
 2. 方法：遍历数组，确定某个目标值后，看看哪些元素可以通过操作变为这个值。
 '''
 
-
 class Solution:
     def maximumBeauty(self, nums, k):
+        if not nums:  # 检查 nums 是否为空
+            return 0
+
+        record_time = {}
+        for num in nums:
+            left, right = num - k, num + k + 1
+
+            for record in range(left, right):
+                record_time[record] = record_time.get(record,0) + 1
+
+            # 如果 record_time 为空，返回 0
+            if not record_time:
+                return 0
+
+        most_common_value = max(record_time.values())
+        return most_common_value
+solution = Solution()
+print(solution.maximumBeauty([4,6,1,2],2))
+
+from typing import List
+
+'''滑动窗口
+class Solution:
+    def maximumBeauty(self, nums: List[int], k: int) -> int:
+        # 对数组排序
+        nums.sort()
+
+        left = 0  # 滑动窗口左指针
+        max_beauty = 0  # 最大美丽值
+
+        # 遍历数组，right 是滑动窗口的右指针
+        for right in range(len(nums)):
+            # 如果窗口中的最大值和最小值之差大于 2k，则缩小窗口
+            while nums[right] - nums[left] > 2 * k:
+                left += 1
+
+            # 当前窗口长度就是可能的美丽值
+            max_beauty = max(max_beauty, right - left + 1)
+
+        return max_beauty
+'''
