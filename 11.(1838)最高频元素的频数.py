@@ -35,3 +35,27 @@
 
 class Solution:
     def maxFrequency(self, nums, k) :
+        # Step 1: 对数组进行排序
+        nums.sort()
+
+        # 初始化滑动窗口的左指针、窗口内元素的总和、最大频数
+        left = 0
+        total = 0  # 窗口内元素的总和
+        max_freq = 0
+
+        # Step 2: 使用滑动窗口遍历数组
+        for right in range(len(nums)):
+            # 扩大窗口，将 nums[right] 加入窗口，更新窗口内元素总和
+            total += nums[right]
+
+            # Step 3: 检查窗口是否有效
+            # 如果操作次数超过 k，需要收缩窗口
+            while (right - left + 1) * nums[right] - total > k:
+                total -= nums[left]  # 移除 nums[left]，更新总和
+                left += 1  # 收缩窗口
+
+            # Step 4: 更新最大频数
+            max_freq = max(max_freq, right - left + 1)
+
+        return max_freq
+
