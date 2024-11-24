@@ -9,3 +9,7 @@ nums 中 最大 元素与 最小 元素的差等于 nums.length - 1 。
 
 请你返回使 nums 连续 的 最少 操作次数。
 '''
+
+
+class Solution:
+    def minOperations(self, nums):
